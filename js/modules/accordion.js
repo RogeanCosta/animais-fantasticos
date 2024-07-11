@@ -3,14 +3,14 @@ export default function initAccordion() {
     "[data-anime='accordion'] dt"
   );
 
+  function activeAccordion() {
+    this.classList.toggle("ativo");
+    this.nextElementSibling.classList.toggle("ativo");
+  }
+
   if (accordionList.length) {
     accordionList[0].classList.add("ativo");
     accordionList[0].nextElementSibling.classList.add("ativo");
-
-    function activeAccordion() {
-      this.classList.toggle("ativo");
-      this.nextElementSibling.classList.toggle("ativo");
-    }
 
     accordionList.forEach((accordionItem) => {
       accordionItem.addEventListener("click", activeAccordion);

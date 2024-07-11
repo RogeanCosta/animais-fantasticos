@@ -1,15 +1,6 @@
 export default function outsideClick(element, events, callback) {
   const html = document.documentElement;
 
-  if (element.dataset.outside === undefined) {
-    element.dataset.outside = "";
-    events.forEach((userEvent) => {
-      setTimeout(() => {
-        html.addEventListener(userEvent, handleOutsideClick);
-      });
-    });
-  }
-
   function handleOutsideClick(event) {
     if (!element.contains(event.target)) {
       callback();
@@ -18,5 +9,14 @@ export default function outsideClick(element, events, callback) {
       });
       delete element.dataset.outside;
     }
+  }
+
+  if (element.dataset.outside === undefined) {
+    element.dataset.outside = "";
+    events.forEach((userEvent) => {
+      setTimeout(() => {
+        html.addEventListener(userEvent, handleOutsideClick);
+      });
+    });
   }
 }
